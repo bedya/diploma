@@ -7,4 +7,5 @@ class Posd < ActiveRecord::Base
     scope :published, lambda { where(['publish_date <= ?', Date.today]) }
 	scope :by_user_id, lambda {|uid| where(:user_id => uid)}
 	scope :by_category_id, lambda {|cid| joins(:categories).where (['categories.id = ?', cid])}
+
 end
