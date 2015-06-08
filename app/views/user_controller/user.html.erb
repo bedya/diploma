@@ -1,0 +1,6 @@
+<% @users.each do |user| %>
+	<div class="user_div">
+		<%= user.name %><br>
+			<span>last_sign_in_at >> <%= user.last_sign_in_at.strftime("%b %d, %Y") %></span>
+	</div>
+<% end %>

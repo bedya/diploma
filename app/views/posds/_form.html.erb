@@ -1,0 +1,16 @@
+<%= simple_form_for @posd, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :title, autofocus: true %>
+  <%= error_span(@posd[:title]) %>
+  <%= f.input :body %>
+  <%= error_span(@posd[:body]) %>
+  <%= f.input :publish_date, :start_year=>2015%>
+  <%= error_span(@posd[:publish_date]) %>
+  <%= f.association :categories, :as => :check_boxes %>
+  <%= error_span(@posd[:user_id]) %>
+
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                posds_path, :class => 'btn btn-default' %>
+<% end %>
+
+

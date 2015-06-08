@@ -1,0 +1,54 @@
+        <div class="btn_create_post">
+        <% if current_user %>
+            <%= link_to t('.new', :default => t("helpers.links.Create new post")),
+              new_posd_path,
+            :class => 'btn btn-primary' %>
+        <% end %></div>
+
+<% @posds.each do |posd| %>
+    <div class="row">
+      <div class="col-lg-8"><h2><%= posd.title %></h2></div>
+      <div class="col-lg-4"><h3><%= l posd.publish_date, :format => :long %></h3></div>
+    </div>
+      <div class="row">
+        <div class="col-lg-8">Author: <%= link_to posd.user.name, root_path(:user => posd.user.id) %></div> 
+        <div class="col-lg-4">Categories:
+          <% posd.categories.each do |cat| %>
+            <%= cat.name %>
+          <% end %>
+        </div>
+      </div><br/>
+      <blockquote><%= truncate posd.body, length: 50 %>
+<%= link_to 'read more', posd %></blockquote>
+
+       <% if current_user && current_user.id == posd.user_id %>
+     
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_posd_path(posd), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      posd_path(posd),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+                      
+                      <hr/>
+
+        <% end %>  
+
+        
+        <!-- Put this div tag to the place, where the Like block will be -->
+<div class="btnlike">
+<!-- AddToAny BEGIN -->
+<div class="a2a_kit a2a_kit_size_20 a2a_default_style">
+<a class="a2a_button_facebook"></a>
+<a class="a2a_button_twitter"></a>
+<a class="a2a_button_google_plus"></a>
+<a class="a2a_button_vk"></a>
+</div>
+<script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
+<!-- AddToAny END -->
+ </div>
+
+        <% end %>
+          
+         

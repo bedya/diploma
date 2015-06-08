@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  publish_date: 2015-05-09
+  user_id: 1
+
+two:
+  publish_date: 2015-05-09
+  user_id: 1

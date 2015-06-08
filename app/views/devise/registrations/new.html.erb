@@ -1,0 +1,38 @@
+<h2>Sign up</h2>
+
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+ 
+        <%= f.input :name, autofocus: true %>
+
+        <div><%= f.check_box :is_female, {}, true%> <%= f.label :is_female, "Female" %> </div>
+        
+    <div><%= f.check_box :is_female, {}, true%> <%= f.label :is_female, "Male" %> </div>
+
+
+    <div><%= f.label :date_of_birth %><br />
+        <%= f.date_select :date_of_birth, :start_year=>1990,:end_year=>2010%>
+        </div>
+
+  <div class="field">
+    <%= f.input :email, :placeholder => "example@mail.com", autofocus: true %>
+  </div>
+
+  <div class="field">
+    <% if @validatable %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.input :password, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.input :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  
+    <%= f.submit  "Sign up", :class => "btn btn-success" %>
+  
+<% end %>
+
+<%= render "devise/shared/links" %>

@@ -1,0 +1,22 @@
+<%- model_class = Posd -%>
+
+ <div class="row">
+      <div class="col-lg-8"><h2><%= @posd.title %></h2></div>
+      <div class="col-lg-4"><h3><%= l @posd.publish_date, :format => :long %></h3></div>
+    </div>
+      <div class="row">
+        <div class="col-lg-8">Author: <%= link_to @posd.user.name, root_path(:user => @posd.user.id) %></div><br/>
+        <blockquote class="textbloquot"><%= @posd.body %> </blockquote>
+
+         <% if current_user && current_user.id == @posd.user_id %>
+        <p><%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_posd_path(@posd), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      posd_path(@posd),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %></p>
+                      <% end %>
+                      
+    
+  <%=  link_to 'back', posds_path, :class => 'btn btn-default'%>
